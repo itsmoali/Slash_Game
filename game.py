@@ -1,10 +1,10 @@
 import pygame
 import os
-from scripts.Physics import Physics 
+from scripts.Physics import Physics , Player
 from scripts.utils import load_image, load_images
 from scripts.tilemap import Tiles
 from scripts.Clouds import Clouds
-
+from scripts.Animations import Animation
 class Game:
     def __init__(self):
         pygame.init()
@@ -20,10 +20,16 @@ class Game:
             'grass': load_images('tiles/grass'),
             'background' : load_image('background.png'),
             'clouds' : load_images('clouds'),
+            'player/idle' : Animation(load_images('entities/player/idle'), animation_dur = 6),
+            'player/run' : Animation(load_images('entities/player/run'), animation_dur = 6),
+            'player/jump' : Animation(load_images('entities/player/jump'), animation_dur = 6),
+            'player/slide' : Animation(load_images('entities/player/slide'), animation_dur = 6),
+            'player/wall_slide' : Animation(load_images('entities/player/wall_slide'), animation_dur = 6),
         }
         self.clouds = Clouds(self.assets['clouds'],count=16)
         self.tilemap = Tiles(self, tile_size=16)
-        self.player = Physics(self, 'player' , (50,50) , (8,15))
+        self.player = Player(self, (50,50), (8,15))
+        # self.player = Physics(self, 'player' , (50,50) , (8,15))
         self.scroll = [0,0]
 
     def run(self):
@@ -50,7 +56,7 @@ class Game:
                         self.movement[0] = True
                     if event.key == pygame.K_RIGHT:
                         self.movement[1] = True
-                    if event.key == pygame.K_UP:
+                    if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
                         self.player.velocity[1] = -3
                 if event.type == pygame.KEYUP:
                     # if event.key==pygame.K_UP:

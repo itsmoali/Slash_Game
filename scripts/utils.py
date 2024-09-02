@@ -15,3 +15,4 @@ def load_images(path):
         images.append(load_image(path + '/' + img))
     return images
 
+
