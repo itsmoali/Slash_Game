@@ -9,10 +9,10 @@ class Tiles:
         self.tilemap = {}
         self.offscreen_tiles = []
         self.game = game
-        for i in range(10):
-            self.tilemap[str(3+i) + ';10'] = {'type': 'grass', 'variant': 1, 'pos': (3+i, 10)}
-            self.tilemap['10;'+ str(5+i) ] = {'type': 'stone', 'variant': 1, 'pos': (10, 5+i)}
-
+        # for i in range(10):
+        #     self.tilemap[str(3+i) + ';10'] = {'type': 'grass', 'variant': 1, 'pos': (3+i, 10)}
+        #     self.tilemap['10;'+ str(5+i) ] = {'type': 'stone', 'variant': 1, 'pos': (10, 5+i)}
+        #
     def tiles_around(self, pos):
         #Checks which tiles are around the player, based on the player position
         tiles = []
